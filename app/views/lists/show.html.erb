@@ -1,20 +1,43 @@
-<% @bookmarks.each do |bookmark|%>
-<p>
-<%= bookmark.movie.title %>
-<%= image_tag image_url(bookmark.movie.poster_url) %>
-<br>
-</p>
-Comment: "<%= bookmark.comment %>"
-<% if bookmark.photo.attached? %>
 
-Photo: <%= cl_image_tag(bookmark.photo.key,
-      width: 400, height: 300, crop: :fill) %>
 
-<% end %>
-<%= link_to "delete", bookmark_path(bookmark), method: :delete, data: {confirm:"Are you sure?"}%>
-<p>
-</p>
-<% end %>
 
-<%= link_to "Add movie",   new_list_bookmark_path(@list)%>
-<%= link_to "Go back",  lists_path%>
+
+
+<div class="container">
+    <% @bookmarks.each do |bookmark|%>
+       <div class="content">
+        <div class = "movie">
+            <%= bookmark.movie.title %>
+            <%= image_tag image_url(bookmark.movie.poster_url) %>
+      
+        <br>
+
+       
+            Comment: "<%= bookmark.comment %>"
+            <% if bookmark.photo.attached? %>
+
+            <%= cl_image_tag(bookmark.photo.key,
+                width: 400, height: 300, crop: :fill) %>
+
+            <% end %>
+            <br>
+            <div class = "text-center mt-3">
+            <div class = "btn btn-primary">
+                        <%= link_to "delete", bookmark_path(bookmark), method: :delete, data: {confirm:"Are you sure?"}%>
+
+            </div>
+            </div>
+        </div>
+       </div>
+ 
+    <% end %>
+
+    <%= link_to "Add movie",   new_list_bookmark_path(@list)%>
+    <%= link_to "Go back",  lists_path%>
+
+
+</div>
+
+
+
+
