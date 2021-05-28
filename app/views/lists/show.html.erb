@@ -1,0 +1,14 @@
+<% @bookmarks.each do |bookmark|%>
+<p>
+<%= bookmark.movie.title %>
+<%= image_tag image_url(bookmark.movie.poster_url) %>
+<br>
+</p>
+Comment: "<%= bookmark.comment %>"
+<%= link_to "delete", bookmark_path(bookmark), method: :delete, data: {confirm:"Are you sure?"}%>
+<p>
+</p>
+<% end %>
+
+<%= link_to "Add movie",   new_list_bookmark_path(@list)%>
+<%= link_to "Go back",  lists_path%>

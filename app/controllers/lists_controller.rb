@@ -1,10 +1,11 @@
 class ListsController < ApplicationController
     def index
         @lists = List.all
-
     end
 
     def show
+        @list = List.find(params[:id])
+        @bookmarks = @list.bookmarks.all
     end
 
     def new
@@ -21,9 +22,6 @@ class ListsController < ApplicationController
     end
 
     private
-    def find_list
-        @list = List.find(params[:id])
-    end
 
     def list_params
         params.require(:list).permit(:name)
